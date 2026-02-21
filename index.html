@@ -4,9 +4,503 @@
   <meta charset="UTF-8">
   <title>ForgeClip Studio – Short‑Form Video Editing</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ForgeClip Studio offers short-form video editing for small creators on TikTok and YouTube who want to post more and edit less. Test Pack, Starter, and Pro packages for gaming, car, and other creators.">
+
+  <style>
+    :root {
+      /* COLOR PALETTE – tuned to match your red / gray logo */
+      --bg: #050305;
+      --bg-alt: #141118;
+      --bg-alt2: #1b171f;
+      --accent: #ff3c1a;
+      --accent-soft: #ff5c3b;
+      --accent-deep: #d32910;
+      --text: #f7f7f7;
+      --muted: #b4b1c4;
+      --border-soft: rgba(255,255,255,0.08);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: var(--font-main);
+      background:
+        radial-gradient(circle at top left, #ff3c1a22 0, transparent 55%),
+        radial-gradient(circle at bottom right, #ff3c1a22 0, transparent 60%),
+        #050305;
+      color: var(--text);
+    }
+
+    a { color: var(--accent-soft); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* HEADER / NAV */
+
+    header {
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--border-soft);
+      background: rgba(5,3,5,0.95);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #ff3c1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: #f1f1f1;
+      box-shadow: 0 0 20px #ff3c1a55;
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .logo-text span:first-child {
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      font-size: 0.9rem;
+    }
+
+    .logo-text span:last-child {
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 14px;
+      font-size: 0.9rem;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent-soft);
+    }
+
+    .nav-cta {
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #050305;
+      font-weight: 600;
+    }
+
+    .nav-cta:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    /* HERO */
+
+    .hero {
+      max-width: 1100px;
+      margin: 32px auto 20px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: minmax(0,1.6fr) minmax(0,1.2fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--muted);
+      font-size: 0.8rem;
+      margin-bottom: 10px;
+      background: rgba(5,3,5,0.7);
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 4vw, 2.8rem);
+      margin: 0 0 10px;
+    }
+
+    .hero-sub {
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #050305;
+      font-weight: 600;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-soft);
+      text-decoration: none;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      color: var(--text);
+      font-size: 0.9rem;
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--accent-soft);
+    }
+
+    .hero-card {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--bg-alt);
+      border: 1px solid var(--border-soft);
+      font-size: 0.9rem;
+      color: var(--muted);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.45);
+    }
+
+    .hero-card h3 {
+      margin-top: 0;
+      color: #ffffff;
+    }
+
+    .hero-metric {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 8px;
+      font-size: 0.85rem;
+    }
+
+    /* MAIN LAYOUT */
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px;
+      padding-bottom: 60px;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    section h2 {
+      margin-bottom: 8px;
+    }
+
+    section p.section-sub {
+      margin-top: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    }
+
+    .card {
+      padding: 18px;
+      border-radius: 14px;
+      background: var(--bg-alt2);
+      border: 1px solid var(--border-soft);
+      font-size: 0.9rem;
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 6px;
+    }
+
+    .card p {
+      margin-top: 0;
+    }
+
+    .small {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .list {
+      padding-left: 18px;
+      font-size: 0.9rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 18px;
+      font-size: 0.8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border-soft);
+      background: #050305;
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        flex-wrap: wrap;
+      }
+      .nav-links {
+        display: none; /* keep nav simple on mobile */
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>ForgeClip Studio</h1>
-  <p>Short‑form video editing for small creators. This is my test page.</p>
+
+  <!-- HEADER / NAV -->
+  <header>
+    <div class="nav">
+      <div class="nav-left">
+        <!-- If you add your logo image file as logo.png in the repo, replace the logo-mark div with an <img> tag. -->
+        <img src="Logo.png" alt="ForgeClip Studio" class="logo-mark" style="object-fit: cover;">
+
+        <div class="logo-text">
+          <span>FORGECLIP STUDIO</span>
+          <span>Short‑form editing · TikTok & YouTube</span>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <a href="#services">Packages</a>
+        <a href="#examples">Examples</a>
+        <a href="#process">How it works</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <a href="#contact" class="nav-cta">Get started</a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <span class="badge">Short‑form video editing for small creators</span>
+      <h1>Short‑form video editing for small creators who want to post more and edit less.</h1>
+      <p class="hero-sub">
+        ForgeClip Studio turns your raw clips into clean, vertical videos for TikTok and YouTube. Perfect for gaming, car content, or any creator who wants consistent shorts without editing burnout.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Order a Test Pack</a>
+        <a href="#services" class="btn-ghost">See all packages</a>
+      </div>
+    </div>
+
+    <div class="hero-card">
+      <h3>What I do</h3>
+      <p>
+        You record. I cut. ForgeClip Studio handles the trimming, pacing, basic captions, and formatting so your clips are ready to post on TikTok and YouTube Shorts.
+      </p>
+      <div class="hero-metric">
+        <span>Best for:</span>
+        <span>Creators with 0–20K followers</span>
+      </div>
+      <div class="hero-metric">
+        <span>Content:</span>
+        <span>Gaming · Cars · Anything with a strong hook</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- SERVICES / PACKAGES -->
+    <section id="services">
+      <h2>Packages</h2>
+      <p class="section-sub">
+        Pick the option that fits how often you post. All packages include basic cuts, pacing, and simple captions aligned with your style.
+      </p>
+
+      <div class="grid">
+        <!-- Test Pack -->
+        <div class="card">
+          <h3>Test Pack</h3>
+          <p>One‑time pack to try ForgeClip Studio.</p>
+          <ul class="list small">
+            <li>1 edited short‑form video</li>
+            <li>Vertical format for TikTok or YouTube Shorts</li>
+            <li>Basic captions and simple effects</li>
+          </ul>
+          <p class="small"><strong>Price:</strong> $3.49 (one time only)</p>
+        </div>
+
+        <!-- Starter -->
+        <div class="card">
+          <h3>Starter</h3>
+          <p>Light but consistent posting.</p>
+          <ul class="list small">
+            <li>3 edited shorts per month</li>
+            <li>Clean cuts and pacing</li>
+            <li>Simple captions styled to your niche</li>
+            <li>Up to 1 minor revision per video</li>
+          </ul>
+          <p class="small"><strong>Price:</strong> $11.99 / month</p>
+        </div>
+
+        <!-- Pro -->
+        <div class="card">
+          <h3>Pro</h3>
+          <p>Stronger weekly presence.</p>
+          <ul class="list small">
+            <li>7 edited shorts per month</li>
+            <li>More focus on hooks and key moments</li>
+            <li>Simple but clear captions</li>
+            <li>Priority turnaround vs Starter</li>
+          </ul>
+          <p class="small"><strong>Price:</strong> $24.99 / month</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXAMPLES -->
+    <section id="examples">
+      <h2>Examples</h2>
+      <p class="section-sub">
+        Here’s the type of short‑form content ForgeClip Studio is built for. When you have real clips online, you can link or embed them here.
+      </p>
+
+      <div class="grid">
+        <div class="card small">
+          <h3>Gaming highlight</h3>
+          <p>Turning stream VODs into quick, punchy highlight clips with the best moments first.</p>
+        </div>
+        <div class="card small">
+          <h3>Car content</h3>
+          <p>B‑roll, walk‑arounds, and quick takes cut into short, satisfying edits for TikTok and Shorts.</p>
+        </div>
+        <div class="card small">
+          <h3>Any creator with a hook</h3>
+          <p>Talking head clips, reactions, and more—cut down so the hook hits fast and viewers stay.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="process">
+      <h2>How it works</h2>
+      <p class="section-sub">
+        Simple, DM‑based workflow so you don’t have to learn any new tools.
+      </p>
+
+      <div class="grid">
+        <div class="card small">
+          <h3>1. Pick a package</h3>
+          <p>Choose the Test Pack, Starter, or Pro plan based on how many shorts you want each month.</p>
+        </div>
+        <div class="card small">
+          <h3>2. Pay & send clips</h3>
+          <p>Use the PayPal link to pay, then send your raw footage links and ideas through DMs on X.</p>
+        </div>
+        <div class="card small">
+          <h3>3. Get edited shorts</h3>
+          <p>Receive finished vertical videos ready to post on TikTok or YouTube Shorts. You can request small tweaks if needed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <h2>About ForgeClip Studio</h2>
+      <p class="section-sub">
+        Focused on helping small creators show up more often with better clips.
+      </p>
+      <p>
+        ForgeClip Studio is a small editing studio built for creators who want short‑form content without getting stuck in editing. The focus is on gaming, car content, and any niche where a strong hook and fast pacing matter.
+      </p>
+      <p>
+        Instead of big‑agency vibes, ForgeClip Studio keeps things simple: clear packages, DM‑based communication, and edits that match your style so your shorts feel like you—not a random template.
+      </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact & Payments</h2>
+      <p class="section-sub">
+        You can order directly through PayPal and DM on X if you want to talk details.
+      </p>
+
+      <div class="card small">
+        <h3>1. PayPal – order & payment</h3>
+        <p>
+          Use this link to pay for your chosen package (Test Pack, Starter, or Pro). In the notes, include your TikTok/YouTube handle and which package you’re buying.
+        </p>
+        <p>
+          <strong>PayPal:</strong>
+          <a href="https://paypal.me/ForgeClipStudio0?country.x=US&locale.x=en_US" target="_blank" rel="noopener noreferrer">
+            paypal.me/ForgeClipStudio0
+          </a>
+        </p>
+      </div>
+
+      <div class="card small">
+        <h3>2. X (Twitter) – DMs & clip details</h3>
+        <p>
+          After payment, DM the channel links and any notes about your style or what you want highlighted.
+        </p>
+        <p>
+          <strong>X profile:</strong>
+          <a href="https://x.com/ForgeClipStudio" target="_blank" rel="noopener noreferrer">
+            @ForgeClipStudio on X
+          </a>
+        </p>
+      </div>
+
+      <p class="small">
+        If you’re unsure which package fits you, DM on X before paying and we can decide together.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    © <span id="year"></span> ForgeClip Studio. All rights reserved.
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+  </footer>
+
 </body>
 </html>
